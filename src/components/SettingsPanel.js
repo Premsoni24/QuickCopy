@@ -27,6 +27,7 @@ export class SettingsPanel {
     });
     this._toggle('#syncModeSwitch', settings.storageMode === 'sync');
     this._toggle('#confirmDeleteSwitch', settings.confirmBeforeDelete);
+    this._toggle('#closeOnCopySwitch', settings.closeOnCopy);
   }
 
   _toggle(selector, on) {
@@ -43,6 +44,7 @@ export class SettingsPanel {
     );
     qs('#syncModeSwitch', this._el)?.addEventListener('click', handlers.onStorageModeToggle);
     qs('#confirmDeleteSwitch', this._el)?.addEventListener('click', handlers.onConfirmDeleteToggle);
+    qs('#closeOnCopySwitch', this._el)?.addEventListener('click', handlers.onCloseOnCopyToggle);
     qs('#clearAllBtn', this._el)?.addEventListener('click', handlers.onClearAll);
   }
 }

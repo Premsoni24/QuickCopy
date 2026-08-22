@@ -47,7 +47,15 @@ export class AnswerController {
 
   async _handleCopy(answer) {
     const ok = await copyToClipboard(answer.value);
-    this._toast.show(ok ? 'Copied to clipboard' : 'Copy failed — try again');
+    if (!ok) {
+      this._toast.show('Copy failed — try again');
+      return;
+    }
+    if (this._getSettings().closeOnCopy) {
+      window.close();
+      return;
+    }
+    this._toast.show('Copied to clipboard');
   }
 
   async _handleDelete(answer) {

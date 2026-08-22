@@ -27,6 +27,7 @@ export class SettingsController {
       onThemeChange: (theme) => this._patch({ theme }, () => this._theme.apply(theme)),
       onDensityChange: (listDensity) => this._patch({ listDensity }, () => this._answers.refresh()),
       onConfirmDeleteToggle: () => this._patch({ confirmBeforeDelete: !this.settings.confirmBeforeDelete }),
+      onCloseOnCopyToggle: () => this._patch({ closeOnCopy: !this.settings.closeOnCopy }),
       onStorageModeToggle: () => this._toggleStorageMode(),
       onClearAll: () => this._answers.clearAll(),
     });

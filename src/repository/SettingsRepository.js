@@ -6,6 +6,7 @@ export const DEFAULT_SETTINGS = {
   listDensity: 'preview', // 'preview' | 'compact'
   storageMode: 'sync', // 'sync' | 'local'
   confirmBeforeDelete: true,
+  closeOnCopy: false,
 };
 
 /**

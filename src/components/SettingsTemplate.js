@@ -47,6 +47,12 @@ export function buildSettingsTemplate() {
       el('span', { class: 'danger-text-btn', id: 'clearAllBtn' }, ['Clear all'])),
   ]));
 
+  const behavior = section('Behavior', card([
+    row(el('div', { class: 'srt-label' }, ['Close popup on copy']),
+      el('div', { class: 'switch', id: 'closeOnCopySwitch' }),
+      'Auto-close instead of showing a toast'),
+  ]));
+
   const footer = el('div', { class: 'settings-footer-brand' }, ['QuickCopy v1.0.0']);
-  return [appearance, data, footer];
+  return [appearance, behavior, data, footer];
 }
