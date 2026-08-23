@@ -12,6 +12,37 @@ A Chrome extension that stores short key/value answers (for job applications) an
 
 No build step — it's plain ES modules, loaded straight by the popup.
 
+## Features
+
+<table>
+    <tr>
+        <th>Feature</th>
+        <th>Description</th>
+        <th>Screenshot</th>
+    </tr>
+    <tr>
+        <td>Add new key/value</td>
+        <td>Save a key/value pair; both must be unique.</td>
+        <td>
+            <img src="./.assets/create-view.png" height="75px" />
+        </td>
+    </tr>
+    <tr>
+        <td>List view</td>
+        <td>Search, click a key to copy the corresponding value.</td>
+        <td>
+            <img src="./.assets/list-view.png" height="75px" />
+        </td>
+    </tr>
+    <tr>
+        <td>Settings</td>
+        <td>Customize the extension's behavior and appearance.</td>
+        <td>
+            <img src="./.assets/settings.png" height="75px" />
+        </td>
+    </tr>
+</table>
+
 ### Usage
 
 - Keys and values must both be **unique** (case-insensitive, trimmed). Save is blocked with an inline error if either collides.
