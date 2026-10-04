@@ -394,3 +394,24 @@
 .settings-view.open {
   display: flex;
 }
+
+.sensitive-option {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sensitive-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.sensitive-checkbox input {
+  margin: 0;
+  cursor: pointer;
+}

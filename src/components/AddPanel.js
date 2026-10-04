@@ -12,17 +12,19 @@ export class AddPanel {
     this._el = qs(selector);
     this._keyInput = qs('#addKeyInput', this._el);
     this._valueInput = qs('#addValueInput', this._el);
+    this._sensitiveInput = qs('#addSensitiveInput', this._el);
     this._errorEl = qs('#addError', this._el);
     this._saveBtn = qs('#addSaveBtn', this._el);
   }
 
   open() {
-    this._keyInput.value = '';
-    this._valueInput.value = '';
-    this._setError(null);
-    this._el.classList.add('open');
-    this._keyInput.focus();
-  }
+  this._keyInput.value = '';
+  this._valueInput.value = '';
+  this._sensitiveInput.checked = false;
+  this._setError(null);
+  this._el.classList.add('open');
+  this._keyInput.focus();
+}
 
   close() {
     this._el.classList.remove('open');
@@ -33,7 +35,8 @@ export class AddPanel {
     this._saveBtn.addEventListener('click', async () => {
       const key = this._keyInput.value;
       const value = this._valueInput.value;
-      const result = await onSubmit(key, value);
+      const sensitive = this._sensitiveInput.checked;
+      const result = await onSubmit(key, value, sensitive);
       if (!result.success) {
         this._setError(result.error);
         return;

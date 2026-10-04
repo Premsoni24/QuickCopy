@@ -28,8 +28,8 @@ export class AnswerController {
 
   bind() {
     qs('#searchInput').addEventListener('input', debounce(() => this.refresh(), 100));
-    this._addPanel.bindSave(async (key, value) => {
-      const result = await this._loader.wrap(() => this._repo.add(key, value));
+    this._addPanel.bindSave(async (key, value, sensitive) => {
+      const result = await this._loader.wrap(() => this._repo.add(key, value, sensitive));
       if (result.success) await this.refresh();
       return result;
     });

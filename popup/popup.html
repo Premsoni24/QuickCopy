@@ -1,93 +1,128 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>QuickCopy</title>
+    <link rel="stylesheet" href="styles/tokens.css" />
+    <link rel="stylesheet" href="styles/layout.css" />
+    <link rel="stylesheet" href="styles/components.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>QuickCopy</title>
-  <link rel="stylesheet" href="styles/tokens.css">
-  <link rel="stylesheet" href="styles/layout.css">
-  <link rel="stylesheet" href="styles/components.css">
-</head>
-
-<body>
-  <div class="ext-window" id="extWindow">
-
-    <div id="mainView">
-      <div class="ext-header">
-        <div class="ext-header-top">
-          <div class="ext-brand">
-            <img class="ext-logo" src="/icons/icon16.png" alt="QuickCopy Logo" />
-            <div class="ext-title">QuickCopy</div>
+  <body>
+    <div class="ext-window" id="extWindow">
+      <div id="mainView">
+        <div class="ext-header">
+          <div class="ext-header-top">
+            <div class="ext-brand">
+              <img
+                class="ext-logo"
+                src="/icons/icon16.png"
+                alt="QuickCopy Logo"
+              />
+              <div class="ext-title">QuickCopy</div>
+            </div>
+            <button class="icon-btn" id="openSettingsBtn" title="Settings">
+              ⚙
+            </button>
           </div>
-          <button class="icon-btn" id="openSettingsBtn" title="Settings">⚙</button>
+          <div class="search-wrap">
+            <input
+              class="search-input"
+              id="searchInput"
+              placeholder="Search keys…"
+              autocomplete="off"
+            />
+          </div>
         </div>
-        <div class="search-wrap">
-          <input class="search-input" id="searchInput" placeholder="Search keys…" autocomplete="off" />
+
+        <div class="list-meta">
+          <span id="itemCount">0 saved answers</span>
+          <span class="add-link" id="openAddBtn">+ Add new</span>
+        </div>
+
+        <div class="ext-list" id="extList"></div>
+        <div class="empty-state" id="emptyState">
+          <div class="et">No matches</div>
+          <div class="es">
+            Try a different search term, or add a new answer.
+          </div>
+        </div>
+
+        <div class="toast" id="toast">
+          <span id="toastText">Copied to clipboard</span>
+        </div>
+
+        <div class="add-panel" id="addPanel">
+          <div class="add-panel-header">
+            <button class="back-btn" id="closeAddBtn">←</button>
+            <div class="add-panel-title">Add new answer</div>
+          </div>
+          <div class="add-panel-body">
+            <div class="field-group">
+              <label class="field-label">Key</label>
+              <input
+                class="field-input"
+                id="addKeyInput"
+                placeholder="e.g. Notice period"
+              />
+            </div>
+            <div class="field-group">
+              <label class="field-label">Value</label>
+              <textarea
+                class="field-textarea"
+                id="addValueInput"
+                placeholder="What gets copied to your clipboard"
+              ></textarea>
+            </div>
+            <div class="sensitive-option">
+              <label class="sensitive-checkbox">
+                <input type="checkbox" id="addSensitiveInput" />
+                <span>Mark as sensitive</span>
+              </label>
+
+              <div class="field-hint">
+                Sensitive values will be hidden after saving.
+              </div>
+            </div>
+            <div
+              class="field-hint error"
+              id="addError"
+              style="display: none"
+            ></div>
+          </div>
+          <div class="add-panel-footer">
+            <button class="btn btn-secondary" id="cancelAddBtn">Cancel</button>
+            <button class="btn btn-primary" id="addSaveBtn">Save answer</button>
+          </div>
         </div>
       </div>
 
-      <div class="list-meta">
-        <span id="itemCount">0 saved answers</span>
-        <span class="add-link" id="openAddBtn">+ Add new</span>
-      </div>
-
-      <div class="ext-list" id="extList"></div>
-      <div class="empty-state" id="emptyState">
-        <div class="et">No matches</div>
-        <div class="es">Try a different search term, or add a new answer.</div>
-      </div>
-
-      <div class="toast" id="toast"><span id="toastText">Copied to clipboard</span></div>
-
-      <div class="add-panel" id="addPanel">
+      <div class="settings-view" id="settingsView">
         <div class="add-panel-header">
-          <button class="back-btn" id="closeAddBtn">←</button>
-          <div class="add-panel-title">Add new answer</div>
+          <button class="back-btn" id="closeSettingsBtn">←</button>
+          <div class="add-panel-title">Settings</div>
         </div>
-        <div class="add-panel-body">
-          <div class="field-group">
-            <label class="field-label">Key</label>
-            <input class="field-input" id="addKeyInput" placeholder="e.g. Notice period" />
+        <div class="settings-body" id="settingsBody">
+          <!-- built by SettingsPanel.js -->
+        </div>
+      </div>
+
+      <div class="modal-overlay" id="confirmModal">
+        <div class="modal-box">
+          <div class="modal-title" id="confirmTitle">Delete answer?</div>
+          <div class="modal-body" id="confirmBody">This can't be undone.</div>
+          <div class="modal-actions">
+            <button class="btn btn-secondary" id="confirmNo">Cancel</button>
+            <button class="btn btn-danger" id="confirmYes">Delete</button>
           </div>
-          <div class="field-group">
-            <label class="field-label">Value</label>
-            <textarea class="field-textarea" id="addValueInput"
-              placeholder="What gets copied to your clipboard"></textarea>
-          </div>
-          <div class="field-hint error" id="addError" style="display:none;"></div>
         </div>
-        <div class="add-panel-footer">
-          <button class="btn btn-secondary" id="cancelAddBtn">Cancel</button>
-          <button class="btn btn-primary" id="addSaveBtn">Save answer</button>
-        </div>
+      </div>
+
+      <div class="loader-overlay" id="loader">
+        <div class="spinner"></div>
       </div>
     </div>
 
-    <div class="settings-view" id="settingsView">
-      <div class="add-panel-header">
-        <button class="back-btn" id="closeSettingsBtn">←</button>
-        <div class="add-panel-title">Settings</div>
-      </div>
-      <div class="settings-body" id="settingsBody"><!-- built by SettingsPanel.js --></div>
-    </div>
-
-    <div class="modal-overlay" id="confirmModal">
-      <div class="modal-box">
-        <div class="modal-title" id="confirmTitle">Delete answer?</div>
-        <div class="modal-body" id="confirmBody">This can't be undone.</div>
-        <div class="modal-actions">
-          <button class="btn btn-secondary" id="confirmNo">Cancel</button>
-          <button class="btn btn-danger" id="confirmYes">Delete</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="loader-overlay" id="loader">
-      <div class="spinner"></div>
-    </div>
-  </div>
-
-  <script type="module" src="../src/app.js"></script>
-</body>
-
+    <script type="module" src="../src/app.js"></script>
+  </body>
 </html>

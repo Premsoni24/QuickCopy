@@ -37,12 +37,12 @@ export class AnswerRepository {
    * @param {string} value
    * @returns {Promise<{success:boolean,error?:string,answer?:object}>}
    */
-  async add(key, value) {
+  async add(key, value,sensitive = false) {
     const existing = await this.getAll();
     const { valid, error } = validateAnswer(key, value, existing);
     if (!valid) return { success: false, error };
 
-    const answer = { id: generateId(), key: key.trim(), value: value.trim() };
+    const answer = { id: generateId(), key: key.trim(), value: value.trim(),sensitive: Boolean(sensitive) };
     await this._adapter.setMany({ [PREFIX + answer.id]: answer });
     return { success: true, answer };
   }

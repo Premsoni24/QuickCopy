@@ -13,12 +13,12 @@ function initials(text) {
 export function renderListItem(answer, density,hideSensitive, { onCopy, onDelete }) {
   const bodyChildren = [el('div', { class: 'kv-key' }, [answer.key])];
   if (density === 'preview') {
-  const previewValue = hideSensitive
+  const displayValue = hideSensitive && answer.sensitive
     ? '••••••••'
     : answer.value;
 
   bodyChildren.push(
-    el('div', { class: 'kv-value-preview' }, [previewValue])
+    el('div', { class: 'kv-value-preview' }, [displayValue])
   );
 }
 
