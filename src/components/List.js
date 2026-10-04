@@ -21,7 +21,7 @@ export class List {
    * @param {'preview'|'compact'} density
    * @param {{onCopy:Function, onDelete:Function}} handlers
    */
-  render(answers, filterText, density, handlers) {
+  render(answers, filterText, density, hideSensitive, handlers) {
     const filtered = answers.filter((a) =>
       a.key.toLowerCase().includes(filterText.trim().toLowerCase())
     );
@@ -35,7 +35,7 @@ export class List {
       this._emptyEl.style.display = 'none';
       this._listEl.style.display = 'block';
       filtered.forEach((answer) => {
-        this._listEl.appendChild(renderListItem(answer, density, handlers));
+        this._listEl.appendChild(renderListItem(answer, density, hideSensitive, handlers));
       });
     }
 

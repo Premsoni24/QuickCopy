@@ -37,15 +37,30 @@ export function buildSettingsTemplate() {
   ]));
 
   const data = section('Data', card([
-    row(el('div', { class: 'srt-label' }, ['Sync across devices']),
-      el('div', { class: 'switch', id: 'syncModeSwitch' }),
-      'Off stores answers on this device only'),
-    row(el('div', { class: 'srt-label' }, ['Confirm before delete']),
-      el('div', { class: 'switch', id: 'confirmDeleteSwitch' }),
-      'Ask before removing a saved answer'),
-    row(el('div', { class: 'srt-label' }, ['Clear all data']),
-      el('span', { class: 'danger-text-btn', id: 'clearAllBtn' }, ['Clear all'])),
-  ]));
+  row(
+    el('div', { class: 'srt-label' }, ['Sync across devices']),
+    el('div', { class: 'switch', id: 'syncModeSwitch' }),
+    'Off stores answers on this device only'
+  ),
+
+  row(
+    el('div', { class: 'srt-label' }, ['Confirm before delete']),
+    el('div', { class: 'switch', id: 'confirmDeleteSwitch' }),
+    'Ask before removing a saved answer'
+  ),
+
+  row(
+    el('div', { class: 'srt-label' }, ['Hide sensitive values']),
+    el('div', { class: 'switch', id: 'hideSensitiveSwitch' }),
+    'Mask saved values in the list preview'
+  ),
+
+  row(
+    el('div', { class: 'srt-label' }, ['Clear all data']),
+    el('span', { class: 'danger-text-btn', id: 'clearAllBtn' }),
+    'Clear all'
+  ),
+]));
 
   const behavior = section('Behavior', card([
     row(el('div', { class: 'srt-label' }, ['Close popup on copy']),

@@ -39,10 +39,18 @@ export class AnswerController {
     const answers = await this._loader.wrap(() => this._repo.getAll());
     const filterText = qs('#searchInput').value;
     const density = this._getSettings().listDensity;
-    this._list.render(answers, filterText, density, {
-      onCopy: (answer) => this._handleCopy(answer),
-      onDelete: (answer) => this._handleDelete(answer),
-    });
+    const settings = this._getSettings();
+
+this._list.render(
+  answers,
+  filterText,
+  settings.listDensity,
+  settings.hideSensitive,
+  {
+    onCopy: (answer) => this._handleCopy(answer),
+    onDelete: (answer) => this._handleDelete(answer),
+  }
+);
   }
 
   async _handleCopy(answer) {

@@ -30,6 +30,7 @@ export class SettingsController {
       onCloseOnCopyToggle: () => this._patch({ closeOnCopy: !this.settings.closeOnCopy }),
       onStorageModeToggle: () => this._toggleStorageMode(),
       onClearAll: () => this._answers.clearAll(),
+      onHideSensitiveToggle: () => this._patch({ hideSensitive: !this.settings.hideSensitive }),
     });
   }
 

@@ -10,11 +10,17 @@ function initials(text) {
  * @param {'preview'|'compact'} density
  * @param {{onCopy:Function, onDelete:Function}} handlers
  */
-export function renderListItem(answer, density, { onCopy, onDelete }) {
+export function renderListItem(answer, density,hideSensitive, { onCopy, onDelete }) {
   const bodyChildren = [el('div', { class: 'kv-key' }, [answer.key])];
   if (density === 'preview') {
-    bodyChildren.push(el('div', { class: 'kv-value-preview' }, [answer.value]));
-  }
+  const previewValue = hideSensitive
+    ? '••••••••'
+    : answer.value;
+
+  bodyChildren.push(
+    el('div', { class: 'kv-value-preview' }, [previewValue])
+  );
+}
 
   const body = el('div', { class: 'kv-body', onClick: () => onCopy(answer) }, bodyChildren);
   const icon = el('div', { class: 'kv-icon', onClick: () => onCopy(answer) }, [initials(answer.key)]);
