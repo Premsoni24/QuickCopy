@@ -31,11 +31,11 @@ export function renderListItem(answer, density, { onCopy, onDelete, isVisible, o
         e.stopPropagation();
         const visible = onToggleVisibility(answer.id, (previous) => !previous);
         valueInput.type = visible ? 'text' : 'password';
-        visibilityBtn.classList.toggle('is-hidden', !visible);
+        visibilityBtn.textContent = visible ? 'Hide' : 'Show';
         visibilityBtn.title = visible ? 'Hide value' : 'Show value';
         visibilityBtn.setAttribute('aria-label', visibilityBtn.title);
       },
-    }, [el('span', { class: 'kv-eye-icon', 'aria-hidden': 'true' })]);
+    }, [isVisible ? 'Hide' : 'Show']);
     bodyChildren.push(valueInput);
   }
 
