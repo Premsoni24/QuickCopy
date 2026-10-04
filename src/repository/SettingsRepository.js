@@ -7,6 +7,7 @@ export const DEFAULT_SETTINGS = {
   storageMode: 'sync', // 'sync' | 'local'
   confirmBeforeDelete: true,
   closeOnCopy: false,
+  hideSensitive: false,
 };
 
 /**

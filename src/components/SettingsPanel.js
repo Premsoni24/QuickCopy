@@ -28,6 +28,7 @@ export class SettingsPanel {
     this._toggle('#syncModeSwitch', settings.storageMode === 'sync');
     this._toggle('#confirmDeleteSwitch', settings.confirmBeforeDelete);
     this._toggle('#closeOnCopySwitch', settings.closeOnCopy);
+    this._toggle('#hideSensitiveSwitch', settings.hideSensitive);
   }
 
   _toggle(selector, on) {
@@ -46,5 +47,6 @@ export class SettingsPanel {
     qs('#confirmDeleteSwitch', this._el)?.addEventListener('click', handlers.onConfirmDeleteToggle);
     qs('#closeOnCopySwitch', this._el)?.addEventListener('click', handlers.onCloseOnCopyToggle);
     qs('#clearAllBtn', this._el)?.addEventListener('click', handlers.onClearAll);
+    qs('#hideSensitiveSwitch', this._el)?.addEventListener('click', handlers.onHideSensitiveToggle);
   }
 }
