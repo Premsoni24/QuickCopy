@@ -187,12 +187,16 @@
 }
 
 .btn-primary {
-  background: var(--accent);
+  background: #1a6f94;
   color: #fff;
+  border-width: 2px;
+  border-color: #0f5777;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 0 0 2px rgba(26, 111, 148, 0.2);
 }
 
 .btn-primary:hover {
-  background: var(--accent-hover);
+  background: #145a7d;
+  border-color: #0d4c68;
 }
 
 .btn-secondary {
